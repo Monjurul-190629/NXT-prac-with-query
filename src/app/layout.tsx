@@ -34,6 +34,7 @@ export default function RootLayout({
               <li><Link href="/">Home</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/form">Form</Link></li> 
+              <li><Link href="/counter">Counter</Link></li>
             </ul>
           </nav>
           {children}

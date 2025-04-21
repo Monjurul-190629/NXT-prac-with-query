@@ -16,7 +16,7 @@ const page = async ({params} : Params) => {
     console.log(post)
     return (
         <div>
-            {post.id}
+            <p className='font-bold mr-4'>{post.id}.</p>
             {post.body}
         </div>
     );
