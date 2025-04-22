@@ -1,7 +1,12 @@
 'use client'
 import Counter from '@/Component/Counter';
+import Posts from '@/Component/Posts';
 import Stat from '@/Component/Stat';
-import React, { useState } from 'react';
+import { decrement, increment } from '@/features/counters/countersSlice';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+/*
 
 interface CounterType {
     id: number,
@@ -19,9 +24,21 @@ const initialCounters: CounterType[] = [
     }
 ]
 
-const page: React.FC = () => {
 
-    const [counters, setCounters] = useState<CounterType[]>(initialCounters);
+
+*/
+
+const page:React.FC = () => {
+
+
+
+    ///const [counters, setCounters] = useState<CounterType[]>(initialCounters);
+
+    ///Now using redux toolkit
+
+    const counters = useSelector((state:any) => state.counters)
+
+    const dispatch = useDispatch();
 
     
     const TotalCount = counters.reduce((s, counter) => s + counter.value, 0)
@@ -29,6 +46,8 @@ const page: React.FC = () => {
 
     const handleIncrement = (countersId: number): void => {
 
+        /*
+        
         const updatedCounters = counters.map(counter => {
             if (counter.id === countersId) {
                 return {
@@ -42,11 +61,20 @@ const page: React.FC = () => {
         setCounters(updatedCounters);
 
         console.log(counters)
+        
+        
+        
+        
+        */
+
+        dispatch(increment(countersId))
 
     }
 
     const handleDecrement = (countersId: number): void => {
 
+        /*
+        
         const updatedCounters = counters.map(counter => {
             if(counter.id === countersId){
                 return {
@@ -58,6 +86,9 @@ const page: React.FC = () => {
         })
 
         setCounters(updatedCounters)
+        
+        */
+        dispatch(decrement(countersId))
 
     }
 
@@ -73,6 +104,10 @@ const page: React.FC = () => {
 
             <div className='pt-8'>
                 <Stat totalCount={TotalCount} />
+            </div>
+
+            <div className='py-8'>
+                <Posts/>
             </div>
         </div>
     );
